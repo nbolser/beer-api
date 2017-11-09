@@ -7,7 +7,7 @@ RSpec.describe 'Beers API', type: :request do
 
   describe 'GET /beers' do
     before do
-      get beers_path
+      get api_v1_beers_path
     end
 
     it 'returns a 200' do
@@ -25,7 +25,7 @@ RSpec.describe 'Beers API', type: :request do
     let(:beer) { Beer.first }
 
     before do
-      get beer_path(beer)
+      get api_v1_beer_path(beer)
     end
 
     it 'returns a 200' do
@@ -48,7 +48,7 @@ RSpec.describe 'Beers API', type: :request do
     }}
 
     before do
-      post beers_path, params: beer_params
+      post api_v1_beers_path, params: beer_params
     end
 
     it 'returns a 200' do
