@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-  rescue_from ActiveRecord::RecordNotFound, with: :not_found
-  rescue_from JWT::VerificationError, with: :unauthorized
-  rescue_from JWT::DecodeError, with: :unauthorized
+  include ActionController::MimeResponds
+
+  protect_from_forgery with: :exception
 
   private
     def token

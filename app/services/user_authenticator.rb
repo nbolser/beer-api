@@ -16,12 +16,10 @@ class UserAuthenticator
 
   private
     def user
-      @user ||= User.find_by!(email: email)
+      @user ||= User.find_by(email: email)
     end
 
     def authenticate_user_password
-      if user && user.authenticate(password)
-        user
-      end
+      return user if user && user.authenticate(password)
     end
 end

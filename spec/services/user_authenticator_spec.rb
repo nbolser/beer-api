@@ -18,9 +18,9 @@ RSpec.describe UserAuthenticator, type: :service do
     end
 
     context 'when authenticating a invalid user' do
-      it 'will raise error' do
-        expect { described_class.call('bar@example.com', user.password) }.
-          to raise_error(ActiveRecord::RecordNotFound)
+      it 'will return nil' do
+        expect(described_class.call('bar@example.com', user.password)).
+          to be_nil
       end
     end
 
