@@ -1,5 +1,4 @@
 class Api::V1::AuthenticationController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   def create
     user = UserAuthenticator.call(params[:email], params[:password])
