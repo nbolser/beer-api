@@ -21,12 +21,12 @@ class Api::V1::BeersController < ApplicationController
 
   private
 
-  def set_beer
-    @beer = Beer.find_by(id: params[:id])
-  end
+    def set_beer
+      @beer = Beer.find_by(id: params[:id])
+    end
 
-  def beer_attributes
-    params.require(:data).require(:attributes)
-      .permit(:name, :style, :yeast, :hop, :malts, :ibu, :alcohol, :blg)
-  end
+    def beer_attributes
+      params.require(:data).require(:attributes)
+        .permit(:name, :style, :yeast, :hop, :malts, :ibu, :alcohol, :blg)
+    end
 end

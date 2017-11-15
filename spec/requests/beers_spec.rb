@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Beers API', type: :request do
   before do
-    create_list(:beer, 5)
+    create_list(:beer, 3)
   end
 
   describe 'GET /beers' do
