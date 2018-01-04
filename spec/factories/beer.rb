@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :beer do
-    name { Faker::Beer.name }
+    sequence(:name) { |n| "#{Faker::Beer.name} #{n}"  }
     style { Faker::Beer.style }
     yeast { Faker::Beer.yeast }
     hop { Faker::Beer.hop }
