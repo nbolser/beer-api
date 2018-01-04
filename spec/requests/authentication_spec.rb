@@ -4,10 +4,18 @@ RSpec.describe 'Authentication', type: :request do
   let(:user) { create(:user) }
   let(:email) { user.email }
   let(:password) { user.password }
+  let(:auth_params) {{
+    data: {
+      attributes: {
+        email: email,
+        password: password
+      }
+    }
+  }}
 
   describe 'POST /api/v1/authenication' do
     before do
-      post '/api/v1/auth', params: { email: email, password: password }
+      post '/api/v1/auth', params: auth_params
     end
 
     context 'when valid email and password is given' do
