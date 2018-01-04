@@ -12,7 +12,7 @@ class Api::V1::BeersController < ApplicationController
 
   def create
     @beer = Beer.new(beer_attributes)
-    if @beer.save
+    if @beer.save!
       render json: @beer, status: :created
     else
       render json: { errors: @beer.errors }, status: :unprocessable_entity
