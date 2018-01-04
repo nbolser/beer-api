@@ -1,11 +1,11 @@
 class UserAuthenticator
   attr_accessor :email, :password, :user
 
-  def self.call(*args)
-    new(*args).call
+  def self.call(email, password)
+    new(email: email, password: password).call
   end
 
-  def initialize(email, password)
+  def initialize(email: email, password: password)
     @email = email
     @password = password
   end

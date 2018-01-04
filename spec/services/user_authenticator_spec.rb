@@ -2,11 +2,12 @@ require 'rails_helper'
 
 RSpec.describe UserAuthenticator, type: :service do
   let(:user) { create(:user) }
-  let(:user_params) { { params: { email: user.email, password: user.password } } }
+  let(:user_email) { user.email }
+  let(:user_password) { user.password }
 
   describe '#initialize' do
     it 'will not raise error' do
-      expect{ described_class.new(user.email, user.password) }.not_to raise_error
+      expect{ described_class.new(email: user.email, password: user.password) }.not_to raise_error
     end
   end
 
