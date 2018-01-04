@@ -44,11 +44,17 @@ RSpec.describe 'Users API', type: :request do
     }}
 
     before do
-      post api_v1_users_path, params: attributes
+      post api_v1_users_path, params: user_params
     end
 
     it 'returns a 201' do
       expect(response).to have_http_status(201)
+    end
+
+    it 'responds with a user' do
+      json = JSON.parse(body)['data']['attributes']
+
+      expect(json['email']).to eq(attributes[:email])
     end
   end
 end

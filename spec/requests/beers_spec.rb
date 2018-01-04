@@ -15,7 +15,7 @@ RSpec.describe 'Beers API', type: :request do
     end
 
     it 'has the correct list length' do
-      json = JSON.parse(response.body)
+      json = JSON.parse(body)
 
       expect(json['data'].count).to eq(Beer.count)
     end
@@ -33,7 +33,7 @@ RSpec.describe 'Beers API', type: :request do
     end
 
     it 'responds with a single beer' do
-      json = JSON.parse(response.body)['data']['attributes']
+      json = JSON.parse(body)['data']['attributes']
 
       expect(json['name']).to eq(beer.name)
     end
@@ -55,8 +55,10 @@ RSpec.describe 'Beers API', type: :request do
       expect(response).to have_http_status(201)
     end
 
-    it 'responds with a single beer' do
-      expect(Beer.last).to have_attributes(attributes)
+    it 'responds with a beer' do
+      json = JSON.parse(body)['data']
+
+      expect(json['attributes']).to include(attributes.stringify_keys)
     end
   end
 end
