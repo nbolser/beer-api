@@ -24,6 +24,12 @@ Setup the development environment:
 $ bin/rails db:setup
 ```
 
+Run the specs:
+
+```
+$ bin/rspec spec
+```
+
 
 ### Installing
 
