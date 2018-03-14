@@ -1,13 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe 'Beers API', type: :request do
+  let(:media_type) { "application/json" }
+  let!(:user) { create(:user) }
+  let(:token) { JsonWebTokenizer.encode({ sub: user.id }) }
+  let(:authorization) { "Token token=#{token}" }
+  let(:headers) { { accept: media_type, authorization: authorization } }
+
   before do
     create_list(:beer, 3)
   end
 
   describe 'GET /beers' do
     before do
-      get api_v1_beers_path
+      get api_v1_beers_path, headers: headers
     end
 
     it 'returns a 200' do

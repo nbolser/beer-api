@@ -18,7 +18,7 @@ RSpec.describe 'Authentication', type: :request do
       post '/api/v1/auth', params: auth_params
     end
 
-    context 'when valid email and password is given' do
+    context 'WIP when valid email and password is given' do
       it 'returns a 201' do
         expect(response).to have_http_status(201)
       end

@@ -1,4 +1,5 @@
 class Api::V1::BeersController < ApplicationController
+  before_action :require_authentication
   before_action :set_beer, only: [ :show ]
 
   def index

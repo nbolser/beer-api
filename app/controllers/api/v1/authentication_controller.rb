@@ -1,10 +1,10 @@
 class Api::V1::AuthenticationController < ApplicationController
   def create
-    user = UserAuthenticator.call(auth_params[:email], auth_params[:password])
+    @user = UserAuthenticator.call(auth_params[:email], auth_params[:password])
 
-    if user.present?
-      @subject_token = JsonWebTokenizer.encode({ sub: user.id })
-      render json: { token: @subject_token }, status: :created
+    if @user.present?
+      subject_token = JsonWebTokenizer.encode({ sub: @user.id })
+      render json: { token: subject_token }, status: :created
     else
       render json: { errors: [ 'Invalid email or password' ] }, status: :unauthorized
     end

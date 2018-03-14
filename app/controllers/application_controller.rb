@@ -1,17 +1,23 @@
 class ApplicationController < ActionController::API
   include ActionController::MimeResponds
+  include ActionController::HttpAuthentication::Token::ControllerMethods
+
+  def require_authentication
+    authenticate_token
+  end
+
+  protected
+
+  def render_unauthorized
+    head :unauthorized
+  end
 
   private
-    def token
-      @token ||= request.headers.fetch('Authorization', '').split(' ').last
-    end
 
-    def authenticate_token
+  def authenticate_token
+    authenticate_with_http_token do |token, _options|
       payload = JsonWebTokenizer.decode(token)
-      if payload.present?
-        @current_user ||= User.find_by(id: payload[:sub])
-      else
-        render json: { errors: ['Invalid token'] }, status: :unauthorized
-      end
+      User.find_by(id: payload['sub']) if payload.present?
     end
+  end
 end
