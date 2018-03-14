@@ -8,5 +8,14 @@ FactoryBot.define do
     ibu { Faker::Beer.ibu }
     alcohol { Faker::Beer.alcohol }
     blg { Faker::Beer.blg }
+
+    trait :with_comment do
+      before(:create) do |shop|
+        create(:comment, owner: shop)
+      end
+      after(:build) do |shop|
+        build(:comment, owner: shop)
+      end
+    end
   end
 end
