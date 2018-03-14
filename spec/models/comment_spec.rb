@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Comment, type: :model do
   subject { Comment.new }
 
-
   it { is_expected.to be_a(Comment) }
   it { is_expected.to belong_to(:commentable) }
 

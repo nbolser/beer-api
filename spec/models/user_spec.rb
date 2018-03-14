@@ -1,18 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:subject) { build(:user) }
+  subject { User.new }
 
-  it { is_expected.to be_valid }
   it { is_expected.to be_a(User) }
-  it { is_expected.to have_secure_password }
+  it { is_expected.to validate_presence_of(:email) }
 
-  describe '#email' do
-    it { is_expected.to validate_presence_of(:email) }
-    it { is_expected.to validate_uniqueness_of(:email) }
-  end
-
-  describe 'validations' do
+  context 'User creation' do
     let(:password) { 'password' }
     let(:confirmation) { 'password' }
     let(:user) { build(:user, password: password,
